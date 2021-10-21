@@ -1,2 +1,3 @@
-# Ignore generated files
+# Ignore generated files and existing db
 **/*.pyc
+**/db.sqlite3
