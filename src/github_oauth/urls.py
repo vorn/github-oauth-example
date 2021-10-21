@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 from github_oauth.custom_user.views import UserProfileView
 
 urlpatterns = [
+    path("", RedirectView.as_view(url="/myprofile")),
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("myprofile/", login_required(UserProfileView.as_view()), name="myprofile"),
