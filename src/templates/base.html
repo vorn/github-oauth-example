@@ -5,34 +5,46 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     {% block extra_head %}
     {% endblock %}
+    <style type="text/css">
+        body > .grid {
+            height: 100%;
+        }
+        ul.ui.list li:before {
+            content: "";
+        }
+    </style>
 </head>
 <body>
 {% block body %}
-<div class="ui middle aligned center aligned grid">
+<div class="ui center aligned grid">
+    <div class="column sixteen wide">
+        <div class="ui main menu">
+            {% if user.is_authenticated %}
+                <div class="item"><a href="{% url 'account_email' %}">Change E-mail</a></div>
+                <div class="item"><a href="{% url 'account_logout' %}">Sign Out</a></div>
+            {% else %}
+                <div class="item"><a href="{% url 'account_login' %}">Sign In</a></div>
+                <div class="item"><a href="{% url 'account_signup' %}">Sign Up</a></div>
+            {% endif %}
+        </div>
+    </div>
 
-{% if messages %}
-<div>
-    <strong>Messages:</strong>
-    <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endif %}
+    {% if messages %}
+        <div class="row">
+        <div class="column eight wide">
+        <div class="ui message">
+            <div class="header"><strong>Messages:</strong></div>
+            <ul class="list">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+            <div class="ui divider">&nbsp;</div>
 
-<div>
-    <strong>Menu:</strong>
-    <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-    </ul>
-</div>
+        </div>
+        </div>
+    {% endif %}
 <div class="column eight wide content-container">
 {% block content %}
 {% endblock %}
