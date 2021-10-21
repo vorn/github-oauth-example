@@ -1,5 +1,7 @@
 # Github OAuth Exercise
 
+A simple Django application that allows OAuth login via github 
+
 Prequisites:
 - Docker
 - GNU Make
