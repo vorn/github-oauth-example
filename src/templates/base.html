@@ -9,6 +9,7 @@
         body > .grid {
             height: 100%;
         }
+
         ul.ui.list li:before {
             content: "";
         }
@@ -16,7 +17,7 @@
 </head>
 <body>
 {% block body %}
-<div class="ui center aligned grid">
+    <div class="ui center aligned grid">
     <div class="column sixteen wide">
         <div class="ui main menu">
             {% if user.is_authenticated %}
@@ -31,24 +32,23 @@
 
     {% if messages %}
         <div class="row">
-        <div class="column eight wide">
-        <div class="ui message">
-            <div class="header"><strong>Messages:</strong></div>
-            <ul class="list">
-                {% for message in messages %}
-                    <li>{{message}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-            <div class="ui divider">&nbsp;</div>
-
-        </div>
+            <div class="column eight wide">
+                <div class="ui message">
+                    <div class="header"><strong>Messages:</strong></div>
+                    <ul class="list">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="ui divider">&nbsp;</div>
+            </div>
         </div>
     {% endif %}
-<div class="column eight wide content-container">
-{% block content %}
-{% endblock %}
-</div>
+    <div class="column eight wide content-container">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 {% endblock %}
 {% block extra_body %}
