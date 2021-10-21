@@ -15,7 +15,9 @@ class Command(BaseCommand):
         if github_client_id and github_secret:
 
             # set default site to localhost
-            Site.objects.filter(domain='example.com').update(domain='127.0.0.1', name='localhost')
+            Site.objects.filter(domain="example.com").update(
+                domain="127.0.0.1", name="localhost"
+            )
 
             if not SocialApp.objects.exists():
                 obj = SocialApp.objects.create(
@@ -27,4 +29,6 @@ class Command(BaseCommand):
                 obj.sites.add(Site.objects.first())
                 print(f"Created: {obj}")
         else:
-            raise CommandError("GITHUB_CLIENTID and GITHUB_SECRET must be defined in .env (or environment)")
+            raise CommandError(
+                "GITHUB_CLIENTID and GITHUB_SECRET must be defined in .env (or environment)"
+            )
